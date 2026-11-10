@@ -1,0 +1,43 @@
+event:
+  slug: rally-dev
+  name: "[PRUEBA] Buscando a Linux — Rally ISC ITNL"
+  target_count: 6
+  is_test: true
+
+qr_points:
+  - slug: biblioteca
+    public_name: "[PRUEBA] Estación 1 — Biblioteca Central"
+    sort_order: 1
+    clues:
+      - "[PRUEBA] Donde el silencio compila mejor que cualquier IDE y los clásicos de algoritmos descansan en estantes numerados: busca cerca de la entrada principal de consulta."
+      - "[PRUEBA] Entre tesis, manuales de redes y mesas de estudio tranquilo encontrarás el pingüino escondido junto al módulo de préstamo."
+  - slug: lab-computo
+    public_name: "[PRUEBA] Estación 2 — Laboratorio de Cómputo ISC"
+    sort_order: 2
+    clues:
+      - "[PRUEBA] Filas de monitores, switches parpadeando y aroma a prácticas de programación: revisa el acceso principal del centro de cómputo de Sistemas."
+      - "[PRUEBA] Donde se compilan los proyectos finales y nunca falta un cable UTP: busca el código junto a la puerta del laboratorio de ISC."
+  - slug: explanada
+    public_name: "[PRUEBA] Estación 3 — Explanada Cívica"
+    sort_order: 3
+    clues:
+      - "[PRUEBA] Punto de reunión al aire libre donde ondea la bandera en los lunes cívicos: acércate a la jardinera central."
+      - "[PRUEBA] En el corazón abierto del campus, frente al asta principal, hay una señal esperando a tu equipo."
+  - slug: cafeteria
+    public_name: "[PRUEBA] Estación 4 — Cafetería del Campus"
+    sort_order: 4
+    clues:
+      - "[PRUEBA] Ningún programador sobrevive sin combustible: busca donde el café y los snacks recargan la batería entre clases."
+      - "[PRUEBA] Sigue el aroma del almuerzo estudiantil; cerca de las mesas techadas de la cafetería está tu siguiente nodo."
+  - slug: auditorio
+    public_name: "[PRUEBA] Estación 5 — Auditorio / Sala Audiovisual"
+    sort_order: 5
+    clues:
+      - "[PRUEBA] Escenario de conferencias, congresos de ingeniería y ceremonias: inspecciona el pórtico de entrada del auditorio."
+      - "[PRUEBA] Donde un micrófono y un proyector reúnen a toda la carrera: el QR espera en el vestíbulo exterior."
+  - slug: edificio-sistemas
+    public_name: "[PRUEBA] Estación 6 — Edificio de Ingeniería en Sistemas"
+    sort_order: 6
+    clues:
+      - "[PRUEBA] El hogar de los futuros ingenieros en sistemas: busca junto al tablero de avisos del edificio de la carrera."
+      - "[PRUEBA] Entre aulas de estructura de datos y arquitectura de computadoras, revisa el pasillo principal de la coordinación de ISC."

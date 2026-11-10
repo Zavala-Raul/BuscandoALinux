@@ -1,0 +1,137 @@
+# =====================================================================
+# Banco oficial de estaciones QR y pistas — Buscando a Linux (ISC - ITNL)
+# =====================================================================
+
+event:
+  slug: rally-dev
+  name: "Buscando a Linux"
+  target_count: 12
+  is_test: false
+
+qr_points:
+  - slug: gradas
+    public_name: "Estación 1 - Gradas"
+    code: "3Y6CEQjowrHmosr0MCK3DyZhUeJG"
+    sort_order: 1
+    lat: 27.453655
+    lng: -99.513525
+    proximity_radius_m: 25
+    clues:
+      - "Soy un lugar de descanso, y mi función también es presenciar eventos - Estoy en lo alto."
+
+  - slug: bancas-beis
+    public_name: "Estación 2 - Bancas de Béisbol"
+    code: "HxgDOhOe8IRcPyTJS2figc0KNWzY"
+    sort_order: 2
+    lat: 27.45133
+    lng: -99.517096
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: caseta-sistemas
+    public_name: "Estación 3 - Caseta Estacionamiento de Sistemas"
+    code: "G6rJmg3Mb3vu30zm7Zl9EjGISjX2"
+    sort_order: 3
+    lat: 27.454349
+    lng: -99.513605
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: el-chino
+    public_name: "Estación 4 - El Chino"
+    code: "xcsoSg4cQiE6kuKk1E6h3pe9ztg8"
+    sort_order: 4
+    lat: 27.452395
+    lng: -99.51523
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: biblioteca
+    public_name: "Estación 5 - Biblioteca (frente al Muro de Placas)"
+    code: "e0shne5FS6bVQN0JwQSpxgMA7DRb"
+    sort_order: 5
+    lat: 27.454223
+    lng: -99.515777
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: lab-civil
+    public_name: "Estación 6 - Entrada Laboratorio de Civil"
+    code: "QKcDPCqrwHW09Aye6zEXEfwfPdAB"
+    sort_order: 6
+    lat: 27.454412
+    lng: -99.514504
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: gestion-vinculacion
+    public_name: "Estación 7 - Gestión y Vinculación (Muro de Anuncios)"
+    code: "jG9iNqTsYykYzeaOsA3sgZdtYNyT"
+    sort_order: 7
+    lat: 27.451741
+    lng: -99.51569
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: edificio-rojo
+    public_name: "Estación 8 - El Edificio Rojo"
+    code: "Tb09QWwNJ2XgA8fzRUM66tZMoIO8"
+    sort_order: 8
+    lat: 27.45315
+    lng: -99.51445
+    proximity_radius_m: 30
+    clues: []
+
+  - slug: gimnasio
+    public_name: "Estación 9 - Gimnasio Auditorio"
+    code: "XRCtxmOeUE7JKTsHkmajqbkDDmqe"
+    sort_order: 9
+    lat: 27.45295
+    lng: -99.51385
+    proximity_radius_m: 30
+    clues: []
+
+  - slug: lab-sistemas
+    public_name: "Estación 10 - Laboratorio de Ing. en Sistemas"
+    code: "Fp0IvIMxJX46uOPYt01OtTLcSxKd"
+    sort_order: 10
+    lat: 27.45365
+    lng: -99.51415
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: plaza-civica
+    public_name: "Estación 11 - Plaza Cívica / Edificio Administrativo"
+    code: "sLRs1s68JYM3F2tg8R5jInLUpvAh"
+    sort_order: 11
+    lat: 27.45335
+    lng: -99.51605
+    proximity_radius_m: 30
+    clues: []
+
+  - slug: alberca
+    public_name: "Estación 12 - Alberca Semiolímpica"
+    code: "dgAso8pW8AjialMVIqCFhnxnalOd"
+    sort_order: 12
+    lat: 27.45335
+    lng: -99.51365
+    proximity_radius_m: 25
+    clues: []
+
+  - slug: edificios-h
+    public_name: "Estación 13 - Pasillo Edificios H / Ciencias Básicas"
+    code: "qKARo2ws4gri986iy175eKGrjImQ"
+    sort_order: 13
+    lat: 27.45225
+    lng: -99.51475
+    proximity_radius_m: 30
+    clues: []
+
+  - slug: cancha-futrap
+    public_name: "Estación 14 - Cancha de Futrap (junto a pista)"
+    code: "kn9qnU7wF80Qk2buUxOyPsTwyP05"
+    sort_order: 14
+    lat: 27.45285
+    lng: -99.51295
+    proximity_radius_m: 30
+    clues: []

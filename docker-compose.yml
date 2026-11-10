@@ -1,0 +1,21 @@
+# Postgres local para desarrollo y pruebas. En producción se usa Neon (vía Vercel).
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: buscando-linux-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rally
+    ports:
+      - "54329:5432"
+    volumes:
+      - rally-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rally"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  rally-db:

@@ -1,0 +1,61 @@
+{
+  "name": "buscando-a-linux",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Rally presencial ISC - ITNL: encuentra los QR y llega con el organizador que tiene a Linux.",
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.34.9",
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"pnpm dev:api\" \"pnpm dev:web\"",
+    "dev:api": "tsx watch --env-file=.env server/dev.ts",
+    "dev:web": "vite",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:migrate": "tsx --env-file=.env scripts/migrate.ts",
+    "db:seed:dev": "tsx --env-file=.env scripts/seed-dev.ts",
+    "db:setup-prod": "tsx --env-file=.env.prod scripts/deploy-db.ts",
+    "db:clean": "tsx --env-file=.env scripts/clean-test-data.ts",
+    "content:import": "tsx --env-file=.env scripts/import-content.ts",
+    "staff:create": "tsx --env-file=.env scripts/create-staff.ts",
+    "codes:issue": "tsx --env-file=.env scripts/issue-codes.ts",
+    "qr:print": "tsx --env-file=.env scripts/print-qr.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:load": "tsx --env-file=.env scripts/load-test.ts",
+    "check:bundle": "tsx scripts/check-bundle.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.5",
+    "@tanstack/react-query": "5.105.0",
+    "hash-wasm": "4.12.0",
+    "hono": "4.13.14",
+    "pg": "8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router": "8.5.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "26.6.5",
+    "@types/pg": "8.23.1",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "concurrently": "10.0.6",
+    "pdf-lib": "1.17.1",
+    "qrcode": "1.5.4",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "yaml": "2.9.1"
+  }
+}
