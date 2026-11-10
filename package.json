@@ -25,6 +25,7 @@
     "staff:create": "tsx --env-file=.env scripts/create-staff.ts",
     "codes:issue": "tsx --env-file=.env scripts/issue-codes.ts",
     "qr:print": "tsx --env-file=.env scripts/print-qr.ts",
+    "status:prod": "tsx --env-file=.env.prod scripts/status-report.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:load": "tsx --env-file=.env scripts/load-test.ts",
