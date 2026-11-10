@@ -8,6 +8,8 @@
  */
 import { Hono, type Context } from 'hono';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import QRCode from 'qrcode';
 import type { z } from 'zod';
 import {
   ActivateTeamInput,
@@ -347,6 +349,119 @@ export function createApp(opts: AppOptions = {}) {
     const sessionHash = requireStaffSessionHash(c);
     const data = await db.call('admin_overview', [sessionHash]);
     return c.json(data);
+  });
+
+  app.get('/admin/qr-sheets.pdf', async (c) => {
+    const sessionHash = requireStaffSessionHash(c);
+    const data = await db.call<{
+      event: { name: string; slug: string };
+      qr_points: Array<{
+        slug: string;
+        public_name: string;
+        code: string;
+        sort_order: number;
+        is_active: boolean;
+      }>;
+    }>('admin_overview', [sessionHash]);
+
+    const reqUrl = new URL(c.req.url);
+    const origin = (getAllowedOrigin() ?? `${reqUrl.protocol}//${reqUrl.host}`).replace(/\/+$/, '');
+    const activePoints = (data.qr_points ?? []).filter((p) => p.is_active);
+
+    const pdf = await PDFDocument.create();
+    const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
+    const fontRegular = await pdf.embedFont(StandardFonts.Helvetica);
+
+    const safeAscii = (text: string) =>
+      text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\x20-\x7E]/g, ' ');
+
+    for (let idx = 0; idx < activePoints.length; idx++) {
+      const pt = activePoints[idx]!;
+      const url = `${origin}/q/${pt.code}`;
+      const pngBuffer = await QRCode.toBuffer(url, {
+        errorCorrectionLevel: 'H',
+        margin: 2,
+        width: 520,
+      });
+      const pngImage = await pdf.embedPng(pngBuffer);
+
+      const page = pdf.addPage([612, 792]);
+      const { width, height } = page.getSize();
+
+      page.drawText('INSTITUTO TECNOLOGICO DE NUEVO LAREDO - ISC', {
+        x: 72,
+        y: height - 70,
+        size: 11,
+        font: fontBold,
+        color: rgb(0.25, 0.28, 0.35),
+      });
+
+      page.drawText('BUSCANDO A LINUX - PUNTO OFICIAL', {
+        x: 72,
+        y: height - 102,
+        size: 20,
+        font: fontBold,
+        color: rgb(0.06, 0.09, 0.16),
+      });
+
+      const qrSize = 340;
+      page.drawImage(pngImage, {
+        x: (width - qrSize) / 2,
+        y: height - 150 - qrSize,
+        width: qrSize,
+        height: qrSize,
+      });
+
+      page.drawText('1. Escanea este codigo con la camara de tu telefono.', {
+        x: 96,
+        y: height - 530,
+        size: 13,
+        font: fontRegular,
+        color: rgb(0.1, 0.12, 0.18),
+      });
+      page.drawText('2. En la pagina del rally, toca "Registrar este punto".', {
+        x: 96,
+        y: height - 552,
+        size: 13,
+        font: fontRegular,
+        color: rgb(0.1, 0.12, 0.18),
+      });
+
+      page.drawText(
+        'No retires ni danes esta hoja. Uso exclusivo para todos los equipos del rally.',
+        {
+          x: 96,
+          y: 90,
+          size: 10,
+          font: fontRegular,
+          color: rgb(0.4, 0.42, 0.48),
+        },
+      );
+
+      page.drawText(
+        safeAscii(`Control staff: #${idx + 1} (${pt.slug}) - ${pt.public_name}`),
+        {
+          x: 96,
+          y: 65,
+          size: 9,
+          font: fontRegular,
+          color: rgb(0.55, 0.57, 0.62),
+        },
+      );
+    }
+
+    const pdfBytes = await pdf.save();
+    return new Response(Buffer.from(pdfBytes), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="qr-sheets-${data.event.slug}.pdf"`,
+        'Cache-Control': 'no-store',
+      },
+    });
   });
 
   app.post('/admin/event-status', async (c) => {

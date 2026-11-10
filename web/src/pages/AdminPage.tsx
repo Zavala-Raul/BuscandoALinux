@@ -648,10 +648,33 @@ export function AdminPage() {
 
           {/* GESTIÓN DE ESTACIONES QR, COORDENADAS Y PISTAS */}
           <section className="card">
-            <span className="brand-kicker">Estaciones del Campus y Radar GPS</span>
-            <h2 className="card-title">
-              Estaciones QR ({data.qr_points.length} registradas · meta actual: {data.event.target})
-            </h2>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                flexWrap: 'wrap',
+                gap: 12,
+                marginBottom: 8,
+              }}
+            >
+              <div>
+                <span className="brand-kicker">Estaciones del Campus y Radar GPS</span>
+                <h2 className="card-title">
+                  Estaciones QR ({data.qr_points.length} registradas · meta actual:{' '}
+                  {data.event.target})
+                </h2>
+              </div>
+              <a
+                href="/api/admin/qr-sheets.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--primary btn--sm"
+                style={{ textDecoration: 'none' }}
+              >
+                Descargar PDF de los {data.qr_points.length} QRs para imprimir
+              </a>
+            </div>
             <p className="card-subtitle">
               Crea tantas estaciones QR como necesites para tus ~12 equipos. Si agregas coordenadas
               a una estación, los equipos verán el aviso <strong>«¡Cerca de una pista!»</strong>{' '}
